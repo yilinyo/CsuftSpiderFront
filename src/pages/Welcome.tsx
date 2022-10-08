@@ -3,7 +3,7 @@
  * @LastEditors: Yilin
  * @Description: Do not edit
  * @Date: 2022-09-06 18:49:24
- * @LastEditTime: 2022-10-08 19:40:28
+ * @LastEditTime: 2022-10-08 23:08:32
  * @FilePath: \CsuftSpiderFront\src\pages\Welcome.tsx
  */
 import { PageContainer } from '@ant-design/pro-components';
@@ -61,9 +61,7 @@ const Welcome: React.FC = ({ children }) => {
         <CodePreview>本系统非官方教务系统</CodePreview>
         <CodePreview>
           本项目开源,需要请移步我的
-          <a href="http://authserver.csuft.edu.cn/authserver/login?service=http%3A%2F%2Fjwgl.csuft.edu.cn%2F">
-            Github
-          </a>
+          <a href="https://github.com/yilinyo/CsuftSpiderBackend">Github</a>
         </CodePreview>
         <CodePreview>有问题或反馈请联系QQ或邮箱1322780122@qq.com</CodePreview>
       </Card>

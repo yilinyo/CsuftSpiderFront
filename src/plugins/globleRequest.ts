@@ -3,7 +3,7 @@
  * @LastEditors: Yilin
  * @Description: Do not edit
  * @Date: 2022-09-20 17:08:48
- * @LastEditTime: 2022-10-08 22:45:24
+ * @LastEditTime: 2022-10-08 23:29:21
  * @FilePath: \CsuftSpiderFront\src\plugins\globleRequest.ts
  */
 /**
@@ -21,7 +21,7 @@ import { stringify } from 'querystring';
 const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
 
-  prefix: process.env.NODE_ENV === 'production' ? 'http://localhost:8082' : undefined,
+  prefix: process.env.NODE_ENV === 'production' ? 'http://localhost:8082/' : undefined,
   // requestType: 'form',
 });
 
