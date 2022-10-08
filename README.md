@@ -76,37 +76,45 @@
 |  |  |  |   └index.tsx
 ```
 
-前端由AntDesign Pro🎁 + Umi3🍚构建
+前端由 AntDesign Pro🎁 + Umi3🍚 构建
 
-### 使用方法🍖
+### 使用方法 🍖
 
 首先克隆仓库
 
 ```bash
 git clone https://github.com/yilinyo/CsuftSpiderFront
 ```
-然后使用 yarn 或者 npm下载依赖
+
+然后使用 yarn 或者 npm 下载依赖
+
 ```bash
 yarn
 #或者
 npm install
 ```
 
-如果希望修改接口请在plugins目录下globleRequest.ts修改请求拦截器的请求端口
+如果希望修改接口请在 plugins 目录下 globleRequest.ts 修改请求拦截器的请求端口
 
 ```typescript
 const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
-//请求接口
+  //请求接口
   prefix: process.env.NODE_ENV === 'production' ? 'http://localhost:8082' : undefined,
   // requestType: 'form',
 });
 ```
 
-### 后端部署🍗
+项目运行
 
-后端请参考 [CsuftSpider后端部署](https://github.com/yilinyo/CsuftSpiderBackend)
+```bash
+npm run start
+```
 
-### 注意🧀
+### 后端部署 🍗
+
+后端请参考 [CsuftSpider 后端部署](https://github.com/yilinyo/CsuftSpiderBackend)
+
+### 注意 🧀
 
 前端开发不太规范请谅解
