@@ -3,7 +3,7 @@
  * @LastEditors: Yilin
  * @Description: Do not edit
  * @Date: 2022-09-06 18:49:24
- * @LastEditTime: 2022-10-08 23:08:32
+ * @LastEditTime: 2022-10-16 01:21:22
  * @FilePath: \CsuftSpiderFront\src\pages\Welcome.tsx
  */
 import { PageContainer } from '@ant-design/pro-components';
@@ -34,11 +34,22 @@ const Welcome: React.FC = ({ children }) => {
             marginBottom: 24,
           }}
         />
+        <Alert
+          message={'点击左上角蜘蛛旁边按钮可以打开导航栏，或者你可以直接点击下方链接'}
+          type="success"
+          showIcon
+          banner
+          style={{
+            margin: -12,
+            marginBottom: 24,
+          }}
+        />
         <Typography.Text strong>
           <a href="#" rel="noopener noreferrer">
-            使用说明
+            使用说明,注意你需要完成教师评教才能使用
           </a>
         </Typography.Text>
+
         <CodePreview>您可以免去 校园网/VPN 登录教务系统</CodePreview>
         <CodePreview>
           您可以查看并导出 <Link to={'/grade/all'}>学习成绩</Link>

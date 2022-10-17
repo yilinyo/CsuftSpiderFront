@@ -17,6 +17,7 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { Alert, message, Tabs } from 'antd';
+import { textAlign } from 'html2canvas/dist/types/css/property-descriptors/text-align';
 import React, { useState } from 'react';
 import { history, useModel } from 'umi';
 import styles from './index.less';
@@ -55,6 +56,7 @@ const Login: React.FC = () => {
       if (user) {
         const defaultLoginSuccessMessage = '登录成功！';
         message.success(defaultLoginSuccessMessage);
+        message.info('没有完成教师评教请先评教，已评教可以忽略');
         await fetchUserInfo();
         /** 此方法会跳转到 redirect 参数所在的位置 */
 
@@ -94,6 +96,15 @@ const Login: React.FC = () => {
             await handleSubmit(values as API.LoginParams);
           }}
         >
+          <p style={{ textAlign: 'center' }}>
+            <a
+              href="https://www.bilibili.com/video/BV1Z84y1B7oi/?vd_source=902a49293b44e3cb324f388ff3f9ab80"
+              target="_blank"
+              rel="noreferrer"
+            >
+              (完成教师评教再登陆）如何使用,点我看介绍视频❤
+            </a>
+          </p>
           <Tabs activeKey={type} onChange={setType}>
             <Tabs.TabPane key="account" tab={'学号密码登录'} />
           </Tabs>

@@ -56,14 +56,14 @@ export async function getInitialState(): Promise<{
     settings: defaultSettings,
   };
 }
-
+// initialState?.currentUser?.name
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
-      content: initialState?.currentUser?.name,
+      content: '螺蛳粉大学',
     },
     footerRender: () => <Footer />,
     onPageChange: () => {

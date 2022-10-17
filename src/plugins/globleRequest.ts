@@ -3,7 +3,7 @@
  * @LastEditors: Yilin
  * @Description: Do not edit
  * @Date: 2022-09-20 17:08:48
- * @LastEditTime: 2022-10-09 00:45:58
+ * @LastEditTime: 2022-10-17 19:12:58
  * @FilePath: \CsuftSpiderFront\src\plugins\globleRequest.ts
  */
 /**
