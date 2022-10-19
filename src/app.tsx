@@ -13,7 +13,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const loginPath = '/user/login';
 //无需登录页面
-const whiteList = [loginPath, '/user/register'];
+const whiteList = [loginPath, '/user/register','/welcome'];
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
