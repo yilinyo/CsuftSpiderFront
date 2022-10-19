@@ -3,7 +3,7 @@
  * @LastEditors: Yilin
  * @Description: Do not edit
  * @Date: 2022-09-06 18:49:24
- * @LastEditTime: 2022-10-18 23:43:28
+ * @LastEditTime: 2022-10-19 22:16:40
  * @FilePath: \CsuftSpiderFront\src\pages\Welcome.tsx
  */
 import { PageContainer } from '@ant-design/pro-components';
@@ -48,6 +48,7 @@ const Welcome: React.FC = ({ children }) => {
             size="small"
           >
             <CodePreview>您可以免去 校园网/VPN</CodePreview>
+            <CodePreview>自动免密登录处理</CodePreview>
             <Link to={'/grade/all'}>
               <CodePreview>
                 <a>点我查看学习成绩(支持导出PDF)📄 </a>
@@ -107,6 +108,7 @@ const Welcome: React.FC = ({ children }) => {
             size="small"
           >
             <CodePreview>加强了网站安全性</CodePreview>
+            <CodePreview>增加免密登录</CodePreview>
           </Card>
         </Badge.Ribbon>
       </Card>
