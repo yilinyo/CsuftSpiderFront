@@ -2,6 +2,7 @@ import Footer from '@/components/Footer';
 import { login } from '@/services/ant-design-pro/api';
 import { API } from '@/services/ant-design-pro/typings';
 import sm4 from '@/utils/sm4';
+import { useEffect } from 'react';
 
 //import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import {
@@ -42,6 +43,17 @@ const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
+  useEffect(() => {
+
+    (async () => {
+      if (localStorage.getItem('sidSpider') && localStorage.getItem('pwdSpider')) {
+        await handleSubmit({sid:localStorage.getItem('sidSpider'),pwd:localStorage.getItem('pwdSpider')} as API.LoginParams);
+      }
+    })()
+
+  }, []) // 第二个参数为空时只会在第一次渲染时执行
+
+
 
   const fetchUserInfo = async () => {
     const userInfo = await initialState?.fetchUserInfo?.();
@@ -50,6 +62,7 @@ const Login: React.FC = () => {
       await setInitialState((s) => ({ ...s, currentUser: userInfo }));
     }
   };
+
 
   let loginTimes = localStorage.getItem('loginTimes') || 0;
   let time = 30;
@@ -91,6 +104,10 @@ const Login: React.FC = () => {
           redirect: string;
         };
         history.push('/welcome');
+
+        localStorage.setItem('sidSpider',values.sid)
+        localStorage.setItem('pwdSpider',values.pwd)
+
         return;
       } else {
         // message.error('用户名或密码错误！');
@@ -118,13 +135,18 @@ const Login: React.FC = () => {
           subTitle={'无需校园网、VPN即可访问'}
           initialValues={{
             autoLogin: true,
+            sid: localStorage.getItem('sidSpider') || '',
+            pwd: localStorage.getItem('pwdSpider') || ''
           }}
           onFinish={async (values) => {
             // 加密
-            values.pwd = sm4.encrypt(values.pwd);
-
+            if(!localStorage.getItem('pwdSpider')){
+              values.pwd = sm4.encrypt(values.pwd);
+            }
             await handleSubmit(values as API.LoginParams);
           }}
+
+        // }}
         >
           <p style={{ textAlign: 'center' }}>
             <a
@@ -164,6 +186,7 @@ const Login: React.FC = () => {
                   size: 'large',
                   prefix: <LockOutlined className={styles.prefixIcon} />,
                 }}
+
                 placeholder={'请输入密码'}
                 rules={[
                   {

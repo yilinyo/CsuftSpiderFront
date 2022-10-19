@@ -17,6 +17,9 @@ export type GlobalHeaderRightProps = {
  * 退出登录，并且将当前的 url 保存
  */
 const loginOut = async () => {
+  localStorage.removeItem('sidSpider')
+  localStorage.removeItem('pwdSpider')
+
   await outLogin();
   const { query = {}, search, pathname } = history.location;
   const { redirect } = query;
@@ -40,6 +43,10 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
       if (key === 'logout') {
         setInitialState((s) => ({ ...s, currentUser: undefined }));
         loginOut();
+
+
+
+
         return;
       }
       history.push(`/account/${key}`);
