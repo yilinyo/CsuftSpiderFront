@@ -1,6 +1,8 @@
 import Footer from '@/components/Footer';
 import { login } from '@/services/ant-design-pro/api';
 import { API } from '@/services/ant-design-pro/typings';
+import sm4 from '@/utils/sm4';
+
 //import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import {
   // AlipayCircleOutlined,
@@ -16,8 +18,9 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
+
 import { Alert, message, Tabs } from 'antd';
-import { textAlign } from 'html2canvas/dist/types/css/property-descriptors/text-align';
+
 import React, { useState } from 'react';
 import { history, useModel } from 'umi';
 import styles from './index.less';
@@ -48,9 +51,31 @@ const Login: React.FC = () => {
     }
   };
 
+  let loginTimes = localStorage.getItem('loginTimes') || 0;
+  let time = 30;
+  let timer;
   const handleSubmit = async (values: API.LoginParams) => {
     try {
+      if (loginTimes >= 5 && !timer) {
+        timer = setTimeout(() => {
+          loginTimes = 0;
+          localStorage.setItem('loginTimes', loginTimes);
+          clearTimeout(timer);
+          timer = null;
+          time = 30;
+          clearInterval(timer2);
+        }, 30000);
+
+        let timer2 = setInterval(() => {
+          time--;
+        }, 1000);
+        return message.error(`登录次数过多,请耐心等待${time}秒后登录`);
+      } else if (timer) {
+        return message.error(`登录次数过多,请耐心等待${time}秒后登录`);
+      }
+
       // 登录
+
       const user = await login({ ...values, type });
 
       if (user) {
@@ -69,6 +94,8 @@ const Login: React.FC = () => {
         return;
       } else {
         // message.error('用户名或密码错误！');
+        loginTimes++;
+        localStorage.setItem('loginTimes', loginTimes);
       }
 
       console.log(user); // 如果失败去设置用户错误信息
@@ -93,6 +120,9 @@ const Login: React.FC = () => {
             autoLogin: true,
           }}
           onFinish={async (values) => {
+            // 加密
+            values.pwd = sm4.encrypt(values.pwd);
+
             await handleSubmit(values as API.LoginParams);
           }}
         >

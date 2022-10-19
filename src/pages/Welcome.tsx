@@ -3,11 +3,12 @@
  * @LastEditors: Yilin
  * @Description: Do not edit
  * @Date: 2022-09-06 18:49:24
- * @LastEditTime: 2022-10-16 01:21:22
+ * @LastEditTime: 2022-10-18 23:43:28
  * @FilePath: \CsuftSpiderFront\src\pages\Welcome.tsx
  */
 import { PageContainer } from '@ant-design/pro-components';
-import { Alert, Card, Typography } from 'antd';
+import { Alert, Card, Typography, Badge } from 'antd';
+
 import React from 'react';
 import styles from './Welcome.less';
 import { Link } from 'umi';
@@ -23,58 +24,91 @@ const CodePreview: React.FC = ({ children }) => (
 const Welcome: React.FC = ({ children }) => {
   return (
     <PageContainer>
+      <Alert
+        message={'当前版本 CSUFT SPIDER (正式版) V0.0.2'}
+        type="success"
+        showIcon
+        banner
+        style={{
+          margin: -12,
+          marginBottom: 24,
+        }}
+      />
       <Card>
-        <Alert
-          message={'当前版本 CSUFT SPIDER (正式版) V0.0.1'}
-          type="success"
-          showIcon
-          banner
-          style={{
-            margin: -12,
-            marginBottom: 24,
-          }}
-        />
-        <Alert
-          message={'点击左上角蜘蛛旁边按钮可以打开导航栏，或者你可以直接点击下方链接'}
-          type="success"
-          showIcon
-          banner
-          style={{
-            margin: -12,
-            marginBottom: 24,
-          }}
-        />
-        <Typography.Text strong>
-          <a href="#" rel="noopener noreferrer">
-            使用说明,注意你需要完成教师评教才能使用
-          </a>
-        </Typography.Text>
+        <Badge.Ribbon text="Tips" placement="start">
+          <Card
+            style={{ marginBottom: '15px' }}
+            title={
+              <Typography.Text strong style={{ paddingLeft: '30px' }}>
+                <a href="#" rel="noopener noreferrer">
+                  使用说明 (仅评教后才能使用！)
+                </a>
+              </Typography.Text>
+            }
+            size="small"
+          >
+            <CodePreview>您可以免去 校园网/VPN</CodePreview>
+            <Link to={'/grade/all'}>
+              <CodePreview>
+                <a>点我查看学习成绩(支持导出PDF)📄 </a>
+              </CodePreview>
+            </Link>
+            <Link to={'/grade/analysis'}>
+              <CodePreview>
+                <a>点我可视化追踪学习情况📈</a>
+              </CodePreview>
+            </Link>
+            <Link to={'/exam'}>
+              <CodePreview>
+                <a>点我便捷查看考试安排👀</a>
+              </CodePreview>
+            </Link>
+            <Link to={'/course'}>
+              <CodePreview>
+                <a>点我轻松查看课程信息💻</a>
+              </CodePreview>
+            </Link>
+            <CodePreview>点击左上角蜘蛛旁边按钮唤起导航栏</CodePreview>
+          </Card>
+        </Badge.Ribbon>
 
-        <CodePreview>您可以免去 校园网/VPN 登录教务系统</CodePreview>
-        <CodePreview>
-          您可以查看并导出 <Link to={'/grade/all'}>学习成绩</Link>
-        </CodePreview>
-        <CodePreview>
-          您可以可视化追踪 <Link to={'/grade/analysis'}>学习情况</Link>
-        </CodePreview>
-        <CodePreview>
-          您可以便捷查看 <Link to={'/exam'}>考试安排</Link>
-        </CodePreview>
-        <CodePreview>
-          您可以轻松查看 <Link to={'/course'}>课程信息</Link>
-        </CodePreview>
-        <CodePreview>我们不会对任何数据进行存储</CodePreview>
-        <Typography.Text strong>
-          <a href="#" rel="noopener noreferrer">
-            其它说明
-          </a>
-        </Typography.Text>
-        <CodePreview>本系统非官方教务系统</CodePreview>
-        <CodePreview>
-          本项目开源,需要请移步我的
-          <a href="https://github.com/yilinyo/CsuftSpiderBackend">Github</a>
-        </CodePreview>
-        <CodePreview>有问题或反馈请联系QQ或邮箱1322780122@qq.com</CodePreview>
+        <Badge.Ribbon text="Tips" placement="start" color="pink">
+          <Card
+            style={{ marginBottom: '15px' }}
+            title={
+              <Typography.Text strong style={{ paddingLeft: '30px' }}>
+                <a href="#" rel="noopener noreferrer">
+                  其它说明
+                </a>
+              </Typography.Text>
+            }
+            size="small"
+          >
+            <CodePreview>本系统非官方教务系统</CodePreview>
+            <CodePreview>我们不会对任何数据进行存储</CodePreview>
+            <CodePreview>
+              本项目开源,需要请移步我的
+              <a href="https://github.com/yilinyo/CsuftSpiderBackend">Github</a>
+            </CodePreview>
+            <CodePreview>有问题或反馈请联系QQ或邮箱1322780122@qq.com</CodePreview>
+          </Card>
+        </Badge.Ribbon>
+
+        <Badge.Ribbon text="Tips" placement="start" color="green">
+          <Card
+            style={{ marginBottom: '15px' }}
+            title={
+              <Typography.Text strong style={{ paddingLeft: '30px' }}>
+                <a href="#" rel="noopener noreferrer">
+                  更新说明
+                </a>
+              </Typography.Text>
+            }
+            size="small"
+          >
+            <CodePreview>加强了网站安全性</CodePreview>
+          </Card>
+        </Badge.Ribbon>
       </Card>
       {/* {children} */}
     </PageContainer>
